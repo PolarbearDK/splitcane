@@ -1,0 +1,128 @@
+--------------------Configuration: STANG - Win32 Debug--------------------
+Begining build with project "C:\Stangbygning\STANG.DSP", at root.
+Active configuration is Win32 (x86) Console Application (based on Win32 (x86) Console Application)
+
+Project's tools are:
+			"Fortran 90 Compiler for 80x86" with flags "/browser:"Debug/" /include:"Debug/" /compile_only /nologo /debug:full /optimize:0 /warn:nofileopt /module:"Debug/" /object:"Debug/" /pdbfile:"Debug/DF50.PDB" "
+			"Win32 Resource Compiler" with flags "/l 0x406 /fo"Debug/RESOURCE.res" /d "_DEBUG" "
+			"Browser Database Maker" with flags "/nologo /o"Debug/STANG.bsc" "
+			"COFF Linker for 80x86" with flags "kernel32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/STANG.pdb" /debug /machine:I386 /out:"Debug/STANG.exe" /pdbtype:sept "
+			"Custom Build" with flags ""
+			"<Component 0xa>" with flags ""
+
+Creating command line "rc.exe /l 0x406 /fo"Debug/RESOURCE.res" /d "_DEBUG" "C:\Stangbygning\RESOURCE.RC"" 
+Creating temp file "C:\Users\viggo\AppData\Local\Temp\RSPB9FA.tmp" with contents </browser:"Debug/" /include:"Debug/" /compile_only /nologo /debug:full /optimize:0 /warn:nofileopt /module:"Debug/" /object:"Debug/" /pdbfile:"Debug/DF50.PDB" 
+"C:\Stangbygning\STANGMOD.F90"
+"C:\Stangbygning\STANGINIT.F90"
+"C:\Stangbygning\STANG.F90"
+"C:\Stangbygning\SOLSYM.F90"
+"C:\Stangbygning\lastdialog.F90"
+"C:\Stangbygning\INITIALSETTINGS.F90"
+"C:\Stangbygning\Hentlast.f90"
+"C:\Stangbygning\Hentfil.f90"
+"C:\Stangbygning\HENTDATA.F90"
+"C:\Stangbygning\GAUELI.F90"
+"C:\Stangbygning\FORCES.F90"
+"C:\Stangbygning\FILDIALOG.F90"
+"C:\Stangbygning\Datadialog.F90"
+"C:\Stangbygning\CHEPOL.F90"
+"C:\Stangbygning\CHEBUD.F90"
+"C:\Stangbygning\CALCPLOT.F90"
+"C:\Stangbygning\BMOMENT.F90"
+"C:\Stangbygning\Bend.F90"
+"C:\Stangbygning\BEAM.F90"
+>
+Creating temp file "C:\Users\viggo\AppData\Local\Temp\RSPB9FB.tmp" with contents <kernel32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/STANG.pdb" /debug /machine:I386 /out:"Debug/STANG.exe" /pdbtype:sept 
+.\Debug\BEAM.OBJ
+.\Debug\Bend.obj
+.\Debug\BMOMENT.OBJ
+.\Debug\CALCPLOT.OBJ
+.\Debug\CHEBUD.OBJ
+.\Debug\CHEPOL.OBJ
+.\Debug\Datadialog.obj
+.\Debug\FILDIALOG.OBJ
+.\Debug\FORCES.OBJ
+.\Debug\GAUELI.OBJ
+.\Debug\HENTDATA.OBJ
+.\Debug\Hentfil.obj
+.\Debug\Hentlast.obj
+.\Debug\INITIALSETTINGS.OBJ
+.\Debug\lastdialog.obj
+.\Debug\SOLSYM.OBJ
+.\Debug\STANG.OBJ
+.\Debug\STANGINIT.OBJ
+.\Debug\STANGMOD.OBJ
+.\Debug\RESOURCE.res>
+Creating command line "link.exe @C:\Users\viggo\AppData\Local\Temp\RSPB9FB.tmp" 
+Compiling resources...
+Compiling Fortran...
+C:\Stangbygning\STANGMOD.F90
+C:\Stangbygning\STANGINIT.F90
+C:\Stangbygning\STANG.F90
+C:\Stangbygning\SOLSYM.F90
+C:\Stangbygning\lastdialog.F90
+C:\Stangbygning\INITIALSETTINGS.F90
+C:\Stangbygning\Hentlast.f90
+C:\Stangbygning\Hentfil.f90
+C:\Stangbygning\HENTDATA.F90
+C:\Stangbygning\GAUELI.F90
+C:\Stangbygning\FORCES.F90
+C:\Stangbygning\FILDIALOG.F90
+C:\Stangbygning\Datadialog.F90
+C:\Stangbygning\CHEPOL.F90
+C:\Stangbygning\CHEBUD.F90
+C:\Stangbygning\CALCPLOT.F90
+C:\Stangbygning\BMOMENT.F90
+C:\Stangbygning\Bend.F90
+C:\Stangbygning\BEAM.F90
+Linking...
+CALCPLOT.OBJ : error LNK2001: unresolved external symbol __f_setwindowconfig@4
+CALCPLOT.OBJ : error LNK2001: unresolved external symbol __f_getwindowconfig@4
+CALCPLOT.OBJ : error LNK2001: unresolved external symbol __setbkcolorrgb
+CALCPLOT.OBJ : error LNK2001: unresolved external symbol __setwindow
+CALCPLOT.OBJ : error LNK2001: unresolved external symbol __setcolorrgb
+CALCPLOT.OBJ : error LNK2001: unresolved external symbol __rectangle_w
+CALCPLOT.OBJ : error LNK2001: unresolved external symbol _GRIDSHAPE@20
+CALCPLOT.OBJ : error LNK2001: unresolved external symbol __f_setfont@8
+CALCPLOT.OBJ : error LNK2001: unresolved external symbol __f_getgtextextent@8
+CALCPLOT.OBJ : error LNK2001: unresolved external symbol __f_moveto_w@12
+CALCPLOT.OBJ : error LNK2001: unresolved external symbol __f_outgtext@8
+CALCPLOT.OBJ : error LNK2001: unresolved external symbol __lineto_w
+CALCPLOT.OBJ : error LNK2001: unresolved external symbol __polygon_w
+CALCPLOT.OBJ : error LNK2001: unresolved external symbol __setlinestyle
+CALCPLOT.OBJ : error LNK2001: unresolved external symbol __initializefonts
+STANG.OBJ : error LNK2001: unresolved external symbol __initializefonts
+INITIALSETTINGS.OBJ : error LNK2001: unresolved external symbol _appendmenuqq
+INITIALSETTINGS.OBJ : error LNK2001: unresolved external symbol _NUL@0
+INITIALSETTINGS.OBJ : error LNK2001: unresolved external symbol _WINPRINT@0
+INITIALSETTINGS.OBJ : error LNK2001: unresolved external symbol _WINEXIT@0
+STANG.OBJ : error LNK2001: unresolved external symbol _deletemenuqq
+STANG.OBJ : error LNK2001: unresolved external symbol _insertmenuqq
+Debug/STANG.exe : fatal error LNK1120: 21 unresolved externals
+Error executing link.exe.
+Creating temp file "C:\Users\viggo\AppData\Local\Temp\RSPC467.tmp" with contents </nologo /o"Debug/STANG.bsc" 
+.\Debug\BEAM.SBR
+.\Debug\Bend.sbr
+.\Debug\BMOMENT.SBR
+.\Debug\CALCPLOT.SBR
+.\Debug\CHEBUD.SBR
+.\Debug\CHEPOL.SBR
+.\Debug\Datadialog.sbr
+.\Debug\FILDIALOG.SBR
+.\Debug\FORCES.SBR
+.\Debug\GAUELI.SBR
+.\Debug\HENTDATA.SBR
+.\Debug\Hentfil.sbr
+.\Debug\Hentlast.sbr
+.\Debug\INITIALSETTINGS.SBR
+.\Debug\lastdialog.sbr
+.\Debug\SOLSYM.SBR
+.\Debug\STANG.SBR
+.\Debug\STANGINIT.SBR
+.\Debug\STANGMOD.SBR>
+Creating command line "bscmake.exe @C:\Users\viggo\AppData\Local\Temp\RSPC467.tmp" 
+Creating browse info file...
+
+
+
+STANG.exe - 23 error(s), 0 warning(s)

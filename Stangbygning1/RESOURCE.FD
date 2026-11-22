@@ -1,0 +1,33 @@
+!MS$FREEFORM
+! Microsoft Developer Studio generated include file.
+! Used by RESOURCE.rc
+!
+      integer, parameter :: IDD_DIALOG1                     = 101
+      integer, parameter :: IDD_DIALOG2                     = 102
+      integer, parameter :: IDD_DIALOG3                     = 103
+      integer, parameter :: IDB_BITMAP2                     = 109
+      integer, parameter :: IDI_ICON1                       = 110
+      integer, parameter :: IDC_CURSOR1                     = 111
+      integer, parameter :: IDD_DIALOG4                     = 113
+      integer, parameter :: IDC_EDIT_FILE                   = 1000
+      integer, parameter :: IDC_EDIT_NYVISH                 = 1001
+      integer, parameter :: IDC_EDIT_NYTRIS                 = 1002
+      integer, parameter :: IDC_EDIT_NKANT                  = 1003
+      integer, parameter :: IDC_EDIT_NEYE                   = 1004
+      integer, parameter :: IDC_EDIT_NELE                   = 1005
+      integer, parameter :: IDC_EDIT_STAL                   = 1006
+      integer, parameter :: IDC_EDIT_HAND                   = 1007
+      integer, parameter :: IDC_EDIT_AFST                   = 1008
+      integer, parameter :: IDC_EDIT_SPIDS                  = 1009
+      integer, parameter :: IDC_EDIT_REYE                   = 1010
+      integer, parameter :: IDC_EDIT_HEY2                   = 1011
+      integer, parameter :: IDC_EDIT_HEY1                   = 1012
+      integer, parameter :: IDC_EDIT_EMOD                   = 1013
+      integer, parameter :: IDC_EDIT_RHO                    = 1014
+      integer, parameter :: IDC_EDIT_TRIS                   = 1015
+      integer, parameter :: IDC_EDIT_VISH                   = 1016
+      integer, parameter :: IDC_EDIT_VISP                   = 1017
+      integer, parameter :: IDC_EDIT_ALFA                   = 1018
+      integer, parameter :: IDC_EDIT_FERL                   = 1019
+      integer, parameter :: IDC_EDIT_AFERL                  = 1020
+      integer, parameter :: IDC_EDIT_AJIG                   = 1021

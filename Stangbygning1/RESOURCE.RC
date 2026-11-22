@@ -1,0 +1,258 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Danish resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DAN)
+#ifdef _WIN32
+LANGUAGE LANG_DANISH, SUBLANG_DEFAULT
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG1 DIALOG DISCARDABLE  0, 0, 187, 65
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Navn på datafil"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,130,44,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,7,44,50,14
+    LTEXT           "Navn uden extension .dat",IDC_STATIC,7,22,76,8
+    EDITTEXT        IDC_EDIT_FILE,86,21,94,12,ES_AUTOHSCROLL
+END
+
+IDD_DIALOG2 DIALOG DISCARDABLE  0, 0, 187, 69
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Nyt træk i snøren"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,130,48,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,7,48,50,14
+    LTEXT           "Snøretræk",IDC_STATIC,58,9,33,8
+    LTEXT           "snørens vinkel med håndtag",IDC_STATIC,7,24,85,8
+    EDITTEXT        IDC_EDIT_NYVISH,99,22,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_NYTRIS,99,7,40,14,ES_AUTOHSCROLL
+END
+
+IDD_DIALOG3 DIALOG DISCARDABLE  0, 0, 294, 164
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Data for dimensionering af stang. mm, grader og Newton"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,237,143,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,7,143,50,14
+    LTEXT           "Antal kanter",IDC_STATIC,76,11,36,8
+    LTEXT           "Antal øjer",IDC_STATIC,83,24,29,8
+    LTEXT           "Antal elementer i stangen",IDC_STATIC,28,37,76,8
+    LTEXT           "Stanglængde mm",IDC_STATIC,57,50,55,8
+    LTEXT           "Længde af håndtag",IDC_STATIC,52,63,60,8
+    LTEXT           "Afstand fra håndtag ti nederste øje",IDC_STATIC,10,76,
+                    102,8
+    LTEXT           "Mindste diameter i spids",IDC_STATIC,36,89,74,8
+    LTEXT           "Forhold mellem øjeafstande",IDC_STATIC,27,102,85,8
+    LTEXT           "Højde af nederste øje",IDC_STATIC,46,115,66,8
+    LTEXT           "Højde af øverste øje",IDC_STATIC,50,128,62,8
+    EDITTEXT        IDC_EDIT_NKANT,115,10,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_NEYE,115,23,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_NELE,115,36,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_STAL,115,49,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_HAND,115,62,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_AFST,115,75,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SPIDS,115,88,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_REYE,115,101,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_HEY2,115,114,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_HEY1,115,127,40,12,ES_AUTOHSCROLL
+    LTEXT           "Elaticitetsmodul",IDC_STATIC,194,12,48,8
+    LTEXT           "Massefylde  g/mm3",IDC_STATIC,181,24,61,8
+    LTEXT           "Træk i snøren",IDC_STATIC,199,37,43,8
+    LTEXT           "Vinkel håndtag-snøre",IDC_STATIC,177,50,65,8
+    LTEXT           "Vinkel håndtag-spids",IDC_STATIC,178,63,64,8
+    LTEXT           "Spiralparameter, grader ",IDC_STATIC,168,75,74,8
+    LTEXT           "Længde af ferule",IDC_STATIC,190,89,52,8
+    LTEXT           "Mindste afstand øje.ferule",IDC_STATIC,165,103,77,8
+    LTEXT           "Skrueafstand i jig",IDC_STATIC,190,117,52,8
+    EDITTEXT        IDC_EDIT_EMOD,246,10,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_RHO,246,23,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_NYTRIS,246,36,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_NYVISH,246,49,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_VISP,246,62,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ALFA,246,75,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_FERL,246,88,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_AFERL,246,101,40,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_AJIG,246,114,40,12,ES_AUTOHSCROLL
+END
+
+IDD_DIALOG4 DIALOG DISCARDABLE  0, 0, 187, 98
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,130,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,130,24,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 58
+    END
+
+    IDD_DIALOG2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 62
+    END
+
+    IDD_DIALOG3, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 287
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 157
+    END
+
+    IDD_DIALOG4, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 91
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040604b0"
+        BEGIN
+            VALUE "CompanyName", "Viggo Hoppe\0"
+            VALUE "FileDescription", "stang\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "stang\0"
+            VALUE "LegalCopyright", "Copyright © 2000\0"
+            VALUE "OriginalFilename", "stang.exe\0"
+            VALUE "ProductName", "Viggo Hoppe stang\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x406, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+//IDB_BITMAP2             BITMAP  DISCARDABLE     "bitmap2.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+//IDI_ICON1               ICON    DISCARDABLE     "icon1.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+//IDC_CURSOR1             CURSOR  DISCARDABLE     "cursor1.cur"
+#endif    // Danish resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

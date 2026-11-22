@@ -1,0 +1,71 @@
+--------------------Configuration: STANGBYGNING1 - Win32 Debug--------------------
+Begining build with project "C:\STANGBYGNING1.DSP", at root.
+Active configuration is Win32 (x86) QuickWin Application (based on Win32 (x86) QuickWin Application)
+
+Project's tools are:
+			"Fortran 90 Compiler for 80x86" with flags "/browser:"Debug/" /include:"Debug/" /compile_only /nologo /libs:qwin /debug:full /optimize:0 /warn:nofileopt /module:"Debug/" /object:"Debug/" /pdbfile:"Debug/DF50.PDB" "
+			"OLE Type Library Maker" with flags "/nologo /D "_DEBUG" /mktyplib203 /o NUL /win32 "
+			"Win32 Resource Compiler" with flags "/l 0x406 /fo"Debug/RESOURCE.res" /d "_DEBUG" "
+			"Browser Database Maker" with flags "/nologo /o"Debug/STANGBYGNING1.bsc" "
+			"COFF Linker for 80x86" with flags "kernel32.lib /nologo /entry:"WinMainCRTStartup" /subsystem:windows /incremental:yes /pdb:"Debug/STANGBYGNING1.pdb" /debug /machine:I386 /nodefaultlib:"dfconsol.lib" /out:"Debug/STANGBYGNING1.exe" /pdbtype:sept "
+			"Custom Build" with flags ""
+			"<Component 0xa>" with flags ""
+
+Creating temp file "C:\Users\viggo\AppData\Local\Temp\RSP8846.tmp" with contents </browser:"Debug/" /include:"Debug/" /compile_only /nologo /libs:qwin /debug:full /optimize:0 /warn:nofileopt /module:"Debug/" /object:"Debug/" /pdbfile:"Debug/DF50.PDB" 
+"C:\Stangbygning1\FORCES.F90"
+"C:\Stangbygning1\BEAM.F90"
+>
+Creating temp file "C:\Users\viggo\AppData\Local\Temp\RSP8856.tmp" with contents <kernel32.lib /nologo /entry:"WinMainCRTStartup" /subsystem:windows /incremental:yes /pdb:"Debug/STANGBYGNING1.pdb" /debug /machine:I386 /nodefaultlib:"dfconsol.lib" /out:"Debug/STANGBYGNING1.exe" /pdbtype:sept 
+.\Debug\BEAM.OBJ
+.\Debug\Bend.obj
+.\Debug\BMOMENT.OBJ
+.\Debug\CALCPLOT.OBJ
+.\Debug\CHEBUD.OBJ
+.\Debug\CHEPOL.OBJ
+.\Debug\Datadialog.obj
+.\Debug\FILDIALOG.OBJ
+.\Debug\FORCES.OBJ
+.\Debug\GAUELI.OBJ
+.\Stangbygning1\Debug\gridshape.obj
+.\Debug\HENTDATA.OBJ
+.\Debug\Hentfil.obj
+.\Debug\Hentlast.obj
+.\Debug\INITIALSETTINGS.OBJ
+.\Debug\lastdialog.obj
+.\Stangbygning1\Debug\SCALIN.obj
+.\Debug\SOLSYM.OBJ
+.\Debug\STANG.OBJ
+.\Debug\STANGINIT.OBJ
+.\Debug\STANGMOD.OBJ
+.\Debug\RESOURCE.res>
+Creating command line "link.exe @C:\Users\viggo\AppData\Local\Temp\RSP8856.tmp" 
+Compiling Fortran...
+C:\Stangbygning1\FORCES.F90
+C:\Stangbygning1\BEAM.F90
+Linking...
+Creating temp file "C:\Users\viggo\AppData\Local\Temp\RSP899F.tmp" with contents </nologo /o"Debug/STANGBYGNING1.bsc" 
+.\Debug\BEAM.SBR
+.\Debug\Bend.sbr
+.\Debug\BMOMENT.SBR
+.\Debug\CALCPLOT.SBR
+.\Debug\CHEBUD.SBR
+.\Debug\CHEPOL.SBR
+.\Debug\Datadialog.sbr
+.\Debug\FILDIALOG.SBR
+.\Debug\FORCES.SBR
+.\Debug\GAUELI.SBR
+.\Debug\HENTDATA.SBR
+.\Debug\Hentfil.sbr
+.\Debug\Hentlast.sbr
+.\Debug\INITIALSETTINGS.SBR
+.\Debug\lastdialog.sbr
+.\Debug\SOLSYM.SBR
+.\Debug\STANG.SBR
+.\Debug\STANGINIT.SBR
+.\Debug\STANGMOD.SBR>
+Creating command line "bscmake.exe @C:\Users\viggo\AppData\Local\Temp\RSP899F.tmp" 
+Creating browse info file...
+
+
+
+STANGBYGNING1.exe - 0 error(s), 0 warning(s)

@@ -1,0 +1,14 @@
+ STANG:IFASE=1 SET AT POINT  1
+  FILDIALOG INTRET           1
+ ORDLÆNGDE OG FILNAVN I DIALOG1 :
+  5 :stang                                                                           
+   5 |stang                                                                           |
+   9 |stang.DAT                                                                       |
+   9 |stang.OUT                                                                       |
+  ! ERDER= T
+ STANG:IFASE=2 SET AT POINT  2
+  NY OUTPUTFIL:
+   2 |stang.OUT                                                                       |
+  IFASE2      2
+  IFASE5      2
+ STANG:IFASE=2 SET AT POINT  3
