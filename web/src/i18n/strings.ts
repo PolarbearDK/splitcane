@@ -298,7 +298,7 @@ export const STRINGS: Record<Lang, Strings> = {
     about: {
       title: 'Om programmet',
       body: 'Programmet beregner tilspidsning, øjeplacering og udbøjning af splitcane-fiskestænger. Stangen dimensioneres, så den under det valgte træk bøjer i en logaritmisk spiral (eller en cirkel), og kontrolleres derefter med bjælketeori for store deformationer.',
-      legacyNote: 'Oprindeligt skrevet i Fortran af Viggo Hoppe (2000 – 2013). Beregningerne er overført linje for linje og kontrolleret mod det gamle programs resultatfiler.',
+      legacyNote: 'Oprindeligt skrevet i Fortran af Viggo Hoppe (2000 – 2013). Beregningerne er overført linje for linje og kontrolleret mod det gamle programs resultatfiler. Tre fejl er rettet: alle øjer får nu snorkraft, ferrulen regnes stiv, og stykket under ferrulen deles i elementer.',
     },
     report: { title: 'Beregning af splitcane-fiskestang', input: 'Inddata', generated: 'Udskrevet' },
   },
@@ -470,7 +470,7 @@ export const STRINGS: Record<Lang, Strings> = {
     about: {
       title: 'About',
       body: 'This program designs the taper and guide placement of split-cane fly rods. The rod is sized so that, under the chosen line tension, it bends into a logarithmic spiral (or a circle). It is then checked with large-deflection beam theory.',
-      legacyNote: 'Originally written in Fortran by Viggo Hoppe (2000 – 2013). The calculations were ported line by line and checked against the old program’s output files.',
+      legacyNote: 'Originally written in Fortran by Viggo Hoppe (2000 – 2013). The calculations were ported line by line and checked against the old program’s output files. Three bugs have been fixed: every guide now gets its share of the line force, the ferrule is treated as rigid, and the stretch below the ferrule is divided into elements.',
     },
     report: { title: 'Split-cane fly rod calculation', input: 'Input', generated: 'Printed' },
   },

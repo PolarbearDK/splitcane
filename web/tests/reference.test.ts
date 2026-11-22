@@ -73,7 +73,7 @@ for (const c of cases) {
   describe(c.name, () => {
     const ref = parseOut(fixture(c.out));
     const doc = parseLegacyDat(fixture(c.dat));
-    const res = runModel(doc);
+    const res = runModel({ ...doc, legacy: true });
     const load = res.loads[0];
 
     it('parsed the reference file', () => {

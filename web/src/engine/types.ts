@@ -68,6 +68,11 @@ export interface ModelInput {
   taper?: TaperPoint[];
   /** Load to test the rod with after it has been designed. Omit to use the design load only. */
   load?: LoadCase;
+  /**
+   * Reproduce the original program exactly, including three bugs that the web version fixes
+   * (see web/README.md). Used by the reference tests against the old .OUT files.
+   */
+  legacy?: boolean;
 }
 
 export interface Point {

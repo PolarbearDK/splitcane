@@ -53,9 +53,9 @@ npm run build   # static site in web/dist
 
 ## Faithfulness to the original
 
-The engine is a literal port. It keeps the original variable names, the evaluation order, and even single-precision constants such as `STAL*0.05`. The test suite re-runs the two calculations the old program saved (`stang.OUT` and `stang1.OUT`) and checks every printed value: guide positions, element division, taper, mass, planing form settings, reference force and the full deflection table.
+The engine is a literal port. It keeps the original variable names, the evaluation order, and even single-precision constants such as `STAL*0.05`. With its `legacy` option, the test suite re-runs the two calculations the old program saved (`stang.OUT` and `stang1.OUT`) and checks every printed value: guide positions, element division, taper, mass, planing form settings, reference force and the full deflection table.
 
-A few changes were unavoidable or clearly fixed bugs. Each one is marked `PORT NOTE` in the source and listed in [`web/README.md`](web/README.md#differences-from-the-fortran-program).
+The app itself fixes three calculation bugs found during the port. The last guide below the tip-top now gets its share of the line force. The ferrule is treated as rigid, as the original code intended. The stretch below the ferrule is divided into elements. The ferrule fix makes the rods up to about 9 % stiffer than the old program said. These fixes and the other small changes are marked `PORT NOTE` in the source and listed in [`web/README.md`](web/README.md#differences-from-the-fortran-program).
 
 ## Credits
 

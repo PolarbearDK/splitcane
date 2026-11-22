@@ -58,6 +58,8 @@ class State {
   NELE = 0;
   NEL = 0;
   LFERL = 0;
+  /** ModelInput.legacy: keep the original program's bugs. */
+  legacy = false;
   // design parameters
   REYE = 0;
   HEY1 = 0;
@@ -108,7 +110,8 @@ class State {
 // ---------------------------------------------------------------------------
 // FORCES.F90
 // ---------------------------------------------------------------------------
-function forces(s: State, FNX: number, FNY: number, XYF: Float64Array[]): void {
+/** Exported for tests only. */
+export function forces(s: Pick<State, 'ZEYE' | 'HH' | 'FF' | 'N1' | 'legacy'>, FNX: number, FNY: number, XYF: Float64Array[]): void {
   const { ZEYE, HH, FF, N1 } = s;
   const TREK = Math.sqrt(FNX * FNX + FNY * FNY);
   let DX = ZEYE[3] - ZEYE[2];
@@ -118,7 +121,10 @@ function forces(s: State, FNX: number, FNY: number, XYF: Float64Array[]): void {
   let GY = DD * DY;
   let XK = XYF[1][2];
   let YK = XYF[2][2];
-  for (let J = 3; J <= N1 - 1; J++) {
+  // PORT NOTE: the original loop ran to N1-1, so the segment from the last guide to the tip-top was
+  // never formed: that guide got no force and its share was applied at the tip-top. Fixed unless legacy.
+  const JLAST = s.legacy ? N1 - 1 : N1;
+  for (let J = 3; J <= JLAST; J++) {
     const K = J - 1;
     const XJ = XYF[1][J];
     const YJ = XYF[2][J];
@@ -134,7 +140,6 @@ function forces(s: State, FNX: number, FNY: number, XYF: Float64Array[]): void {
     GX = FX;
     GY = FY;
   }
-  // As in the original, the guide just below the tip-top (N1-1) gets no force of its own.
   FF[1][N1] = FNX - GX;
   FF[2][N1] = FNY - GY;
 }
@@ -160,9 +165,9 @@ function bmoment(s: State, XYF: Float64Array[], XG: Float64Array[], L: number): 
 // ---------------------------------------------------------------------------
 function bend(s: State): void {
   const { EMOD, BIMO, NHAND, HAND, N1, HH, ZEYE, XYF, XYG, NEL, RR, XL, XG } = s;
-  // BEND.F90 does not USE STANGMOD, so its LFERL is an uninitialised local (= 0):
-  // the ferrule is NOT treated as rigid here, despite the comment in STANG.F90.
-  const LFERL_LOCAL = 0;
+  // PORT NOTE: BEND.F90 does not USE STANGMOD, so its LFERL was an uninitialised local (= 0) and the
+  // ferrule was never treated as rigid, despite the code meant to do so. Fixed unless legacy.
+  const LFERL_LOCAL = s.legacy ? 0 : s.LFERL;
   let S = 0.0;
   let C = 1.0;
   let V = 0.0;
@@ -346,8 +351,9 @@ function stangInit(s: State, input: ModelInput, warnings: EngineWarning[]): Init
       }
       DXF1 = XF1 - X1;
       DXF2 = X2 - XF2;
-      // `JFER1 = MAX(1,JFER)` in the original: JFER is never assigned (= 0), so JFER1 is always 1.
-      const JFER1 = 1;
+      // PORT NOTE: the original had `JFER1 = MAX(1,JFER)` with JFER never assigned, so the stretch from the
+      // guide to the ferrule was always one element. Mesh it like the stretch after the ferrule unless legacy.
+      const JFER1 = s.legacy ? 1 : Math.max(1, fint(DXF1 / DX));
       const JFER2 = Math.max(1, fint(DXF2 / DX));
       let DXF = DXF1 / JFER1;
       for (let J = 1; J <= JFER1; J++) {
@@ -814,6 +820,7 @@ export function clampDesign(d: DesignParams): DesignParams {
 export function runModel(input: ModelInput): ModelResult {
   const d = clampDesign(input.design);
   const s = new State();
+  s.legacy = input.legacy === true;
   s.NKANT = d.sides;
   s.NEYE = d.guideCount;
   s.NELE = d.elementCount;
