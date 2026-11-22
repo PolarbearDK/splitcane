@@ -60,6 +60,9 @@ export interface LoadCase {
   lineAngle: number;
 }
 
+/** Target bend curve: log spiral (a circle when spiralParameter = 0) or a parabola. */
+export type TargetCurve = 'spiral' | 'parabola';
+
 export interface ModelInput {
   design: DesignParams;
   /** Guide positions from the butt end, mm (NEYE values). Used when guideSpacingRatio = 0. */
@@ -68,6 +71,8 @@ export interface ModelInput {
   taper?: TaperPoint[];
   /** Load to test the rod with after it has been designed. Omit to use the design load only. */
   load?: LoadCase;
+  /** Target bend curve. Default 'spiral', as in the original program. Not used with a measured taper. */
+  curve?: TargetCurve;
   /**
    * Reproduce the original program exactly, including three bugs that the web version fixes
    * (see web/README.md). Used by the reference tests against the old .OUT files.
@@ -192,7 +197,7 @@ export interface ModelResult {
   /** Radius (to corners) at each element boundary RR(0..NEL), mm. */
   rr: number[];
   guides: GuideRow[];
-  shapeKind: 'spiral' | 'circle' | 'custom';
+  shapeKind: 'spiral' | 'circle' | 'parabola' | 'custom';
   center: Point | null;
   /** Ideal (targeted) bend curve XI(0..NEL). */
   ideal: ShapePoint[];

@@ -1,4 +1,4 @@
-import type { ModelResult } from '../engine/types';
+import type { ModelResult, TargetCurve } from '../engine/types';
 import type { FieldKey, FormState, Validated } from '../form';
 import { useI18n } from '../i18n/context';
 
@@ -98,7 +98,24 @@ export function InputPanel({ form, validated, result, onChange }: Props) {
       {SECTIONS.map((s) => (
         <fieldset key={s.title}>
           <legend>{t.sections[s.title]}</legend>
-          <div className="grid">{s.keys.map(field)}</div>
+          {s.title === 'shape' && (
+            <div className="field curve">
+              <label htmlFor="f-curve">{t.curve.label}</label>
+              <select
+                id="f-curve"
+                value={form.curve}
+                aria-describedby="f-curve-msg"
+                onChange={(e) => onChange({ ...form, curve: e.target.value as TargetCurve })}
+              >
+                <option value="spiral">{t.curve.spiral}</option>
+                <option value="parabola">{t.curve.parabola}</option>
+              </select>
+              <div id="f-curve-msg" className="msg">
+                {form.curve === 'parabola' ? t.curve.parabolaHelp : t.curve.spiralHelp}
+              </div>
+            </div>
+          )}
+          <div className="grid">{s.keys.filter((k) => !(k === 'spiralParameter' && form.curve === 'parabola')).map(field)}</div>
           {s.title === 'guides' && showGuides && (
             <div className={`listfield${errors.guides ? ' has-error' : ''}`}>
               <div className="listhead">

@@ -17,7 +17,7 @@ You give the program the rod's main dimensions and the line tension it should ha
 
 The rod is modelled as a beam with a regular polygonal cross-section (usually six sides). The line runs from the reel through every guide to the tip-top and pulls on each guide.
 
-1. **Target shape.** The user chooses the angle the tip should reach at full load and a *spiral parameter*. Together they define an ideal bend curve: a logarithmic spiral, or a circle when the spiral parameter is 0. A larger spiral parameter gives a stiffer rod.
+1. **Target shape.** The user chooses the angle the tip should reach at full load and a bend curve. The original curve is a **logarithmic spiral**, set by a *spiral parameter*. A larger parameter gives a stiffer rod, and 0 gives a circle. The spiral bends most towards the tip. The web version adds a **parabola** with its vertex at the tip, so it also bends most at the tip. At the same tip angle it gives about the same deflection as the spiral.
 2. **Taper.** With the rod lying on that curve, the program finds the bending moment from the line forces at each point along the rod. It then picks the radius whose stiffness gives exactly the curvature of the curve there: *r⁴ = M / (κ·E·I₁)*. At the tip the radius is limited by the chosen minimum tip diameter and smoothed. In the handle it is extrapolated.
 3. **Check.** The finished rod is loaded step by step, iterating line forces and large-deformation beam bending until the shape converges.
 

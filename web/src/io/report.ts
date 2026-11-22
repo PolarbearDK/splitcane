@@ -16,6 +16,7 @@ export function buildReport(doc: RodDocument, result: ModelResult, t: Strings, l
   if (doc.notes) out.push('', doc.notes);
 
   h(t.report.input);
+  out.push(`  ${t.curve.label.padEnd(38)} ${doc.curve === 'parabola' ? t.curve.parabola : t.curve.spiral}`);
   for (const k of DESIGN_KEYS) out.push(`  ${t.fields[k].label.padEnd(38)} ${n(doc.design[k], 3)}`);
   if (doc.load) out.push(`  ${(t.results.appliedLoad + ': ' + t.fields.loadTension.label).padEnd(38)} ${n(doc.load.lineTension, 3)}`, `  ${(t.results.appliedLoad + ': ' + t.fields.loadAngle.label).padEnd(38)} ${n(doc.load.lineAngle, 3)}`);
 

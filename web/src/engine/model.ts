@@ -233,7 +233,7 @@ function bend(s: State): void {
 // STANGINIT.F90
 // ---------------------------------------------------------------------------
 interface InitResult {
-  shapeKind: 'spiral' | 'circle' | 'custom';
+  shapeKind: 'spiral' | 'circle' | 'parabola' | 'custom';
   ferrule: { start: number; end: number } | null;
   designRows: DesignRow[];
   mass: number;
@@ -249,6 +249,9 @@ function stangInit(s: State, input: ModelInput, warnings: EngineWarning[]): Init
   const { ZEYE, HH, XYE, XL, XD, XG, XI, RR, CCC } = s;
 
   if (s.NYVISH <= s.VISP) throw new RodError('lineAngleNotAboveTipAngle', { line: s.NYVISH, tip: s.VISP });
+  // Not in the original: the parabola option (see the branch below).
+  const PARABOLA = input.curve === 'parabola' && SPIDS >= f32(0.0001);
+  if (PARABOLA && s.VISP >= 90.0) throw new RodError('parabolaTipAngle', { tip: s.VISP });
 
   const RALF = s.ALFA * RAD;
   const RISP = s.VISP * RAD;
@@ -470,6 +473,59 @@ function stangInit(s: State, input: ModelInput, warnings: EngineWarning[]): Init
       for (let J = 1; J <= NGR; J++) R = R + TT[J] * GG[J];
       RR[I] = R;
     }
+  } else if (PARABOLA) {
+    // --- Parabolic bend (not in the original program) ---
+    // A parabola eta = A*xi^2 (local coordinates) with its VERTEX AT THE TIP, so the curvature
+    // 2A/(1+u^2)^1.5 (u = 2*A*xi) is largest at the tip and falls towards the handle.
+    // The rod runs from u = -tan(VISP) at the handle to u = 0 at the tip. The local tangent angle
+    // atan(u) therefore turns through VISP, and the curve is rotated by VISP so that it leaves the handle
+    // horizontally and reaches VISP at the tip. The arc length equals STAN:
+    //   STAN = arc(tan(VISP)) with arc(w) = (w*sqrt(1+w^2) + asinh(w)) / (4*A).
+    shapeKind = 'parabola';
+    const TV = Math.tan(RISP);
+    const A = (TV * Math.sqrt(1.0 + TV * TV) + Math.asinh(TV)) / (4.0 * STAN);
+    const arc = (w: number) => (w * Math.sqrt(1.0 + w * w) + Math.asinh(w)) / (4.0 * A);
+    const CB = Math.cos(RISP);
+    const SB = Math.sin(RISP);
+    // The handle end in local coordinates
+    const XI0 = -TV / (2.0 * A);
+    const ETA0 = (TV * TV) / (4.0 * A);
+    let W = TV;
+    let V = 0.0;
+    let Xs = HAND;
+    let Ys = 0.0;
+    L = NHAND;
+    for (let I = 2; I <= N1; I++) {
+      const HEY = HH[I];
+      const ZEY = ZEYE[I];
+      while (XL[L] - ZEY <= 1.0e-6) {
+        // Newton for w = -u: the remaining arc to the tip is arc(w) = STAN - (XL-HAND). arc is convex and
+        // increasing for w >= 0 and the targets decrease along the rod, so starting from the previous w
+        // (to the right of the root) converges monotonically.
+        const TGT = arc(TV) - (XL[L] - HAND);
+        for (let K = 0; K < 60; K++) {
+          const DW = (arc(W) - TGT) / (Math.sqrt(1.0 + W * W) / (2.0 * A));
+          W = W - DW;
+          if (Math.abs(DW) < 1.0e-14 * (1.0 + Math.abs(W))) break;
+        }
+        const U = -W;
+        const DXI = U / (2.0 * A) - XI0;
+        const DETA = (U * U) / (4.0 * A) - ETA0;
+        V = Math.atan(U) + RISP;
+        Xs = HAND + DXI * CB - DETA * SB;
+        Ys = DXI * SB + DETA * CB;
+        XD[0][L] = V;
+        XI[0][L] = V;
+        XD[1][L] = Xs;
+        XI[1][L] = Xs;
+        XD[2][L] = Ys;
+        XI[2][L] = Ys;
+        CCC[L] = (2.0 * A) / (1.0 + U * U) ** 1.5;
+        L = L + 1;
+      }
+      XYE[1][I] = Xs - HEY * Math.sin(V);
+      XYE[2][I] = Ys + HEY * Math.cos(V);
+    }
   } else if (RALF === 0.0) {
     // --- Circular bend, centre straight above the end of the handle ---
     shapeKind = 'circle';
@@ -561,6 +617,9 @@ function stangInit(s: State, input: ModelInput, warnings: EngineWarning[]): Init
       XD[3][L] = BM;
       if (SPIRAL) {
         CAPPA = CALF / Math.sqrt((s.XCENTR - Xp) ** 2 + (s.YCENTR - Yp) ** 2);
+        BLIMIT = CAPPA * RMIN4;
+      } else if (PARABOLA) {
+        CAPPA = CCC[L];
         BLIMIT = CAPPA * RMIN4;
       }
       CCC[L] = CAPPA;
@@ -887,7 +946,7 @@ export function runModel(input: ModelInput): ModelResult {
     rr: Array.from(s.RR.subarray(0, NEL + 1)),
     guides,
     shapeKind: init.shapeKind,
-    center: init.shapeKind === 'custom' ? null : { x: s.XCENTR, y: s.YCENTR },
+    center: init.shapeKind === 'custom' || init.shapeKind === 'parabola' ? null : { x: s.XCENTR, y: s.YCENTR },
     ideal,
     design: {
       rows: init.designRows,

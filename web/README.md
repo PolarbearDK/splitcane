@@ -38,3 +38,7 @@ These change the results. `runModel({ ..., legacy: true })` turns them off again
 - The ferrule placement branch for a ferrule that's too close to the guide above had `FERL` and `AFERL` swapped. That misaligned all later elements, so it's fixed here.
 - `STOP` conditions become error messages, and the iteration that had no limit now stops with an error instead of hanging.
 - "Change data" always recalculates from scratch, and the test load is applied starting from the design load. In the original, the order of menu clicks could leave stale state behind.
+
+### Additions
+
+- **Parabolic target curve** (`"curve": "parabola"` in the file, `ModelInput.curve`). The target shape is a parabola η = A·ξ² with its vertex at the tip, rotated so the rod leaves the handle horizontally and reaches the tip angle at the tip. The rod runs over u = 2Aξ from −tan(tip angle) to 0, and A is chosen so the arc length equals the rod length outside the handle. The curvature 2A/(1+u²)^1.5 grows from the handle to the tip, like the spiral's. At 60° it is (1+tan²60°)^1.5 = 8 times larger at the tip than at the handle, compared with about 18 times for the spiral parameter 70. The taper then follows from the same r⁴ = M/(κ·E·I₁) rule. The spiral parameter is not used, the tip angle must be below 90°, and the option is ignored for a measured taper. Tested in `tests/parabola.test.ts`.

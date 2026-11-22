@@ -4,6 +4,7 @@
  */
 export type RodErrorCode =
   | 'lineAngleNotAboveTipAngle'
+  | 'parabolaTipAngle'
   | 'guideFirstPosition'
   | 'guideOrder'
   | 'guideLastPosition'

@@ -3,7 +3,7 @@
  * numbers ("1,") don't get rewritten. Parsing accepts Danish decimal commas.
  */
 import { MAX_ELEMENTS, MAX_GUIDES } from './engine/model';
-import type { DesignParams, ModelInput, TaperPoint } from './engine/types';
+import type { DesignParams, ModelInput, TaperPoint, TargetCurve } from './engine/types';
 import { DESIGN_KEYS, FORMAT_ID, type RodDocument } from './io/document';
 import type { Strings } from './i18n/strings';
 
@@ -15,6 +15,7 @@ export interface FormState {
   fields: Record<FieldKey, string>;
   guideText: string;
   taperText: string;
+  curve: TargetCurve;
 }
 
 const fmt = (n: number) => (Number.isFinite(n) ? String(Math.round(n * 1e6) / 1e6) : '');
@@ -30,6 +31,7 @@ export function formFromDocument(doc: RodDocument): FormState {
     fields,
     guideText: (doc.guidePositions ?? []).map(fmt).join('\n'),
     taperText: (doc.taper ?? []).map((p) => `${fmt(p.x)}\t${fmt(p.d)}`).join('\n'),
+    curve: doc.curve ?? 'spiral',
   };
 }
 
@@ -66,7 +68,7 @@ export function parseTaperText(text: string): TaperPoint[] | null {
 
 type Rule = (v: number, all: Record<FieldKey, number>) => string | null;
 
-function rules(t: Strings['validation']): Partial<Record<FieldKey, Rule[]>> {
+function rules(t: Strings['validation'], curve: TargetCurve): Partial<Record<FieldKey, Rule[]>> {
   const integer: Rule = (v) => (Number.isInteger(v) ? null : t.integer);
   const min = (m: number): Rule => (v) => (v >= m ? null : t.min(m));
   const max = (m: number): Rule => (v) => (v <= m ? null : t.max(m));
@@ -87,8 +89,13 @@ function rules(t: Strings['validation']): Partial<Record<FieldKey, Rule[]>> {
     density: [positive],
     lineTension: [positive],
     lineAngle: [positive, max(179)],
-    tipAngle: [positive, (v, a) => (v < a.lineAngle ? null : t.tipBelowLine)],
-    spiralParameter: [min(-89), max(89)],
+    tipAngle: [
+      positive,
+      (v, a) => (v < a.lineAngle ? null : t.tipBelowLine),
+      (v) => (curve !== 'parabola' || v < 90 ? null : t.parabolaTipAngle),
+    ],
+    // Not used by the parabola, so not checked (the value is kept for switching back)
+    spiralParameter: curve === 'parabola' ? [] : [min(-89), max(89)],
     ferruleLength: [nonNeg],
     ferruleClearance: [nonNeg],
     jigScrewSpacing: [positive],
@@ -110,7 +117,12 @@ export function validate(form: FormState, t: Strings): Validated {
     values[k] = parseNumber(form.fields[k]);
     if (!Number.isFinite(values[k])) errors[k] = t.validation.number;
   }
-  const r = rules(t.validation);
+  // The spiral parameter is hidden for the parabola; don't block on it
+  if (form.curve === 'parabola' && errors.spiralParameter) {
+    delete errors.spiralParameter;
+    values.spiralParameter = 0;
+  }
+  const r = rules(t.validation, form.curve);
   for (const k of Object.keys(r) as FieldKey[]) {
     if (errors[k]) continue;
     for (const rule of r[k]!) {
@@ -139,7 +151,8 @@ export function validate(form: FormState, t: Strings): Validated {
   if (Object.keys(errors).length) return { errors, input: null, document: null };
 
   const load = { lineTension: values.loadTension, lineAngle: values.loadAngle };
-  const input: ModelInput = { design, guidePositions, taper, load };
+  const curve = form.curve === 'parabola' ? form.curve : undefined;
+  const input: ModelInput = { design, guidePositions, taper, load, curve };
   const document: RodDocument = {
     format: FORMAT_ID,
     version: 1,
@@ -147,6 +160,7 @@ export function validate(form: FormState, t: Strings): Validated {
     design,
   };
   if (form.notes.trim()) document.notes = form.notes;
+  if (curve) document.curve = curve;
   // Keep custom lists in the file even when they are not in use, so switching back is lossless.
   const g = parseGuideText(form.guideText);
   if (g?.length) document.guidePositions = g;

@@ -37,6 +37,7 @@ export interface Strings {
     customTaper: string;
     customTaperHelp: string;
   };
+  curve: { label: string; spiral: string; parabola: string; spiralHelp: string; parabolaHelp: string };
   fields: Record<keyof DesignParams | 'loadTension' | 'loadAngle', FieldText>;
   units: { mm: string; deg: string; N: string; Nmm: string; Nmm2: string; g: string; gcm3: string; Nmm2mod: string };
   validation: {
@@ -49,6 +50,7 @@ export interface Strings {
     lessThanLength: string;
     handlePlusGuide: string;
     tipBelowLine: string;
+    parabolaTipAngle: string;
     guideList: (n: number) => string;
     taperList: string;
   };
@@ -66,7 +68,7 @@ export interface Strings {
     tip: string;
     ferrule: string;
     noFerrule: string;
-    shape: { spiral: string; circle: string; custom: string };
+    shape: { spiral: string; circle: string; parabola: string; custom: string };
     designLoad: string;
     appliedLoad: string;
     steps: (n: number) => string;
@@ -163,6 +165,13 @@ export const STRINGS: Record<Lang, Strings> = {
       customTaper: 'Målt tilspidsning',
       customTaperHelp: 'Én linje pr. punkt: position (mm fra håndtagsenden) og diameter målt over kanterne (mm). Mindst 7 punkter.',
     },
+    curve: {
+      label: 'Bøjningskurve',
+      spiral: 'Logaritmisk spiral',
+      parabola: 'Parabel',
+      spiralHelp: 'Bøjer mest mod spidsen. Spiralparameter 0 giver en cirkel.',
+      parabolaHelp: 'Parablens toppunkt ligger i spidsen, så stangen bøjer mest dér. Spidsvinklen skal være under 90°.',
+    },
     fields: {
       sides: { label: 'Antal kanter', help: '6 for en sekskantet stang' },
       guideCount: { label: 'Antal øjer', help: '3 – 30, inkl. topøje' },
@@ -197,6 +206,7 @@ export const STRINGS: Record<Lang, Strings> = {
       lessThanLength: 'Skal være mindre end stanglængden',
       handlePlusGuide: 'Håndtag + afstand skal være mindre end stanglængden',
       tipBelowLine: 'Skal være mindre end snørens vinkel',
+      parabolaTipAngle: 'Skal være under 90° for en parabel',
       guideList: (n) => `Angiv ${n} positioner (én pr. linje)`,
       taperList: 'Hver linje skal have to tal: position og diameter',
     },
@@ -214,7 +224,7 @@ export const STRINGS: Record<Lang, Strings> = {
       tip: 'Spidsens position',
       ferrule: 'Ferrule',
       noFerrule: 'ingen',
-      shape: { spiral: 'spiral', circle: 'cirkel', custom: 'målt tilspidsning' },
+      shape: { spiral: 'spiral', circle: 'cirkel', parabola: 'parabel', custom: 'målt tilspidsning' },
       designLoad: 'Designlast',
       appliedLoad: 'Prøvelast',
       steps: (n) => `${n} lasttrin`,
@@ -266,6 +276,7 @@ export const STRINGS: Record<Lang, Strings> = {
     },
     errors: {
       lineAngleNotAboveTipAngle: () => 'Snørens vinkel er mindre end spidsens.',
+      parabolaTipAngle: () => 'En parabel kan ikke nå en spidsvinkel på 90° eller mere.',
       guideFirstPosition: (p) => `Nederste øje er ikke placeret ved håndtag + afstand (${f(p.expected, 2)} mm), men ved ${f(p.got, 2)} mm.`,
       guideOrder: (p) => `Øjerne ved ${f(p.a, 2)} og ${f(p.b, 2)} mm er ikke i rækkefølge.`,
       guideLastPosition: (p) => `Øverste øje er ikke placeret ved stanglængden (${f(p.expected, 2)} mm), men ved ${f(p.got, 2)} mm.`,
@@ -297,7 +308,7 @@ export const STRINGS: Record<Lang, Strings> = {
     },
     about: {
       title: 'Om programmet',
-      body: 'Programmet beregner tilspidsning, øjeplacering og udbøjning af splitcane-fiskestænger. Stangen dimensioneres, så den under det valgte træk bøjer i en logaritmisk spiral (eller en cirkel), og kontrolleres derefter med bjælketeori for store deformationer.',
+      body: 'Programmet beregner tilspidsning, øjeplacering og udbøjning af splitcane-fiskestænger. Stangen dimensioneres, så den under det valgte træk bøjer i en logaritmisk spiral, en cirkel eller en parabel, og kontrolleres derefter med bjælketeori for store deformationer.',
       legacyNote: 'Oprindeligt skrevet i Fortran af Viggo Hoppe (2000 – 2013). Beregningerne er overført linje for linje og kontrolleret mod det gamle programs resultatfiler. Tre fejl er rettet: alle øjer får nu snorkraft, ferrulen regnes stiv, og stykket under ferrulen deles i elementer.',
     },
     report: { title: 'Beregning af splitcane-fiskestang', input: 'Inddata', generated: 'Udskrevet' },
@@ -335,6 +346,13 @@ export const STRINGS: Record<Lang, Strings> = {
       customTaper: 'Measured taper',
       customTaperHelp: 'One line per point: position (mm from the butt) and diameter across the corners (mm). At least 7 points.',
     },
+    curve: {
+      label: 'Bend curve',
+      spiral: 'Logarithmic spiral',
+      parabola: 'Parabola',
+      spiralHelp: 'Bends most towards the tip. Spiral parameter 0 gives a circle.',
+      parabolaHelp: 'The parabola’s vertex is at the tip, so the rod bends most there. The tip angle must be below 90°.',
+    },
     fields: {
       sides: { label: 'Number of sides', help: '6 for a hexagonal rod' },
       guideCount: { label: 'Number of guides', help: '3 – 30, including the tip-top' },
@@ -369,6 +387,7 @@ export const STRINGS: Record<Lang, Strings> = {
       lessThanLength: 'Must be less than the rod length',
       handlePlusGuide: 'Handle + distance must be less than the rod length',
       tipBelowLine: 'Must be less than the line angle',
+      parabolaTipAngle: 'Must be below 90° for a parabola',
       guideList: (n) => `Enter ${n} positions (one per line)`,
       taperList: 'Each line needs two numbers: position and diameter',
     },
@@ -386,7 +405,7 @@ export const STRINGS: Record<Lang, Strings> = {
       tip: 'Tip position',
       ferrule: 'Ferrule',
       noFerrule: 'none',
-      shape: { spiral: 'spiral', circle: 'circle', custom: 'measured taper' },
+      shape: { spiral: 'spiral', circle: 'circle', parabola: 'parabola', custom: 'measured taper' },
       designLoad: 'Design load',
       appliedLoad: 'Test load',
       steps: (n) => `${n} load steps`,
@@ -438,6 +457,7 @@ export const STRINGS: Record<Lang, Strings> = {
     },
     errors: {
       lineAngleNotAboveTipAngle: () => 'The line angle is smaller than the tip angle.',
+      parabolaTipAngle: () => 'A parabola cannot reach a tip angle of 90° or more.',
       guideFirstPosition: (p) => `The lowest guide is not at handle + distance (${f(p.expected, 2)} mm) but at ${f(p.got, 2)} mm.`,
       guideOrder: (p) => `The guides at ${f(p.a, 2)} and ${f(p.b, 2)} mm are not in order.`,
       guideLastPosition: (p) => `The top guide is not at the rod length (${f(p.expected, 2)} mm) but at ${f(p.got, 2)} mm.`,
@@ -469,7 +489,7 @@ export const STRINGS: Record<Lang, Strings> = {
     },
     about: {
       title: 'About',
-      body: 'This program designs the taper and guide placement of split-cane fly rods. The rod is sized so that, under the chosen line tension, it bends into a logarithmic spiral (or a circle). It is then checked with large-deflection beam theory.',
+      body: 'This program designs the taper and guide placement of split-cane fly rods. The rod is sized so that, under the chosen line tension, it bends into a logarithmic spiral, a circle or a parabola. It is then checked with large-deflection beam theory.',
       legacyNote: 'Originally written in Fortran by Viggo Hoppe (2000 – 2013). The calculations were ported line by line and checked against the old program’s output files. Three bugs have been fixed: every guide now gets its share of the line force, the ferrule is treated as rigid, and the stretch below the ferrule is divided into elements.',
     },
     report: { title: 'Split-cane fly rod calculation', input: 'Input', generated: 'Printed' },

@@ -907,3 +907,26 @@ tfoot td {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* ---------- target curve selector ---------- */
+.field.curve {
+  margin-bottom: 10px;
+}
+
+.field.curve label {
+  min-height: 0;
+}
+
+.field.curve select {
+  width: 100%;
+  border: 1px solid var(--rule);
+  border-radius: 7px;
+  background: var(--bg);
+  padding: 6px 9px;
+}
+
+.field.curve select:focus {
+  border-color: var(--focus);
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 20%, transparent);
+}
