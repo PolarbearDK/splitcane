@@ -112,3 +112,30 @@ describe('STANGINIT: the stretch below the ferrule is divided into elements', ()
     expect(longest).toBeCloseTo(ferrule.start - 800, 9);
   });
 });
+
+describe('element limit', () => {
+  const at = (elementCount: number, legacy: boolean) =>
+    runModel({ ...input(EXAMPLE_SPIRAL, legacy), design: { ...EXAMPLE_SPIRAL.design, elementCount } });
+
+  it('allows up to 1000 elements', () => {
+    const res = at(1000, false);
+    expect(res.nel).toBeGreaterThan(900); // approximate, as in the original (959 here)
+    expect(res.loads[0].rows.length).toBe(res.nel - res.nhand + 1);
+    // A fine mesh agrees closely with the default 200
+    expect(res.reference.force).toBeCloseTo(at(200, false).reference.force, 4);
+  });
+
+  it('legacy: capped at NELX - 1 = 119 as in the original', () => {
+    expect(at(1000, true).nel).toBe(at(119, true).nel);
+  });
+});
+
+describe('guide limit', () => {
+  it('handles 30 guides on a long rod', () => {
+    const design = { ...EXAMPLE_SPIRAL.design, rodLength: 3500, handleLength: 400, firstGuideDistance: 600, guideCount: 30 };
+    const res = runModel({ design });
+    expect(res.guides.length - 1).toBe(30);
+    for (let i = 2; i < res.guides.length; i++) expect(res.guides[i].fromButt).toBeGreaterThan(res.guides[i - 1].fromButt);
+    expect(res.guides[30].fromButt).toBeCloseTo(3500, 9);
+  });
+});

@@ -32,6 +32,8 @@ These change the results. `runModel({ ..., legacy: true })` turns them off again
 
 ### Other deviations
 
+- The original's fixed arrays (`NELX = 120`) capped the element count at 119 and a measured taper at 120 points. Both limits are now 1000, and new rods default to 200 elements instead of 30. The results settle at about 200 elements (under 0.1 % change beyond that), and a full calculation with 1000 elements takes under 10 ms. Legacy mode keeps the old limits.
+- The guide count goes up to 30 instead of 14 (`NEYX = 15`). The ferrule must still fit between two guides with its clearance on both sides, so many guides only fit on long rods. For example, 25 guides need about 3 m with an 80 mm ferrule.
 - Element boundaries at guides are snapped exactly to the guide position. The old results depended on rounding at the 1e-13 mm level, and on the compiler's x87 extended precision.
 - The ferrule placement branch for a ferrule that's too close to the guide above had `FERL` and `AFERL` swapped. That misaligned all later elements, so it's fixed here.
 - `STOP` conditions become error messages, and the iteration that had no limit now stops with an error instead of hanging.

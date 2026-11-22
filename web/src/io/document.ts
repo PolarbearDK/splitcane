@@ -2,7 +2,7 @@
  * The JSON file format that replaces the old .DAT files.
  *
  * {
- *   "format": "stangbygning", "version": 1,
+ *   "format": "splitcane", "version": 1,
  *   "name": "...", "notes": "...",
  *   "design": { ...DesignParams },
  *   "guidePositions": [ ... ],        // only used when design.guideSpacingRatio = 0
@@ -12,7 +12,9 @@
  */
 import type { DesignParams, LoadCase, ModelInput, TaperPoint } from '../engine/types';
 
-export const FORMAT_ID = 'stangbygning';
+export const FORMAT_ID = 'splitcane';
+/** Written by the first web version; still accepted when opening a file. */
+const OLD_FORMAT_IDS = ['stangbygning'];
 export const FORMAT_VERSION = 1;
 
 export interface RodDocument extends ModelInput {
@@ -48,7 +50,7 @@ export const DESIGN_KEYS: (keyof DesignParams)[] = [
 export const DEFAULT_DESIGN: DesignParams = {
   sides: 6,
   guideCount: 8,
-  elementCount: 30,
+  elementCount: 200,
   elasticModulus: 25000,
   density: 1.1,
   lineTension: 0.2,
@@ -91,7 +93,7 @@ export function parseDocument(text: string): RodDocument {
   }
   if (!raw || typeof raw !== 'object') throw new DocumentError('wrongFormat');
   const o = raw as Record<string, unknown>;
-  if (o.format !== FORMAT_ID) throw new DocumentError('wrongFormat');
+  if (o.format !== FORMAT_ID && !OLD_FORMAT_IDS.includes(o.format as string)) throw new DocumentError('wrongFormat');
   if (!isNum(o.version) || o.version > FORMAT_VERSION) throw new DocumentError('newerVersion', String(o.version));
   const d = o.design as Record<string, unknown> | undefined;
   if (!d || typeof d !== 'object') throw new DocumentError('missingField', 'design');

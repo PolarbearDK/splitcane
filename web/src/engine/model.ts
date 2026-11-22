@@ -40,8 +40,16 @@ const PI = PIHALV * 2.0;
 const RAD = PIHALV / 90.0;
 const GRAD = 1.0 / RAD;
 
-/** PORT NOTE: the Fortran arrays were fixed size; these are only safety margins. */
-const EL_CAP = 4 * NELX + 16;
+/**
+ * PORT NOTE: the Fortran arrays were fixed at NELX = 120, which capped the element count at 119 and the
+ * measured taper at 120 points. Legacy mode keeps those caps; otherwise both go up to 1000.
+ */
+export const MAX_ELEMENTS = 1000;
+export const MAX_TAPER_POINTS = 1000;
+/** The original allowed 14 guides (NEYX = 15); the arrays here have room for EYE_CAP - 2. */
+export const MAX_GUIDES = 30;
+/** Room for NELE plus the extra elements from the minimum of 3 per guide interval and the ferrule. */
+const EL_CAP = 4 * MAX_ELEMENTS + 16;
 const EYE_CAP = 64;
 /** PORT NOTE: the original iterated without limit in BEAM; we stop instead of hanging the browser. */
 const MAX_BEAM_ITERATIONS = 20000;
@@ -415,13 +423,14 @@ function stangInit(s: State, input: ModelInput, warnings: EngineWarning[]): Init
     // --- Read diameter points and smooth them with Chebyshev polynomials ---
     shapeKind = 'custom';
     const taper = input.taper ?? [];
-    const XX = new Float64Array(NELX + 2);
-    const YY = new Float64Array(NELX + 2);
+    const MAXPT = s.legacy ? NELX : MAX_TAPER_POINTS;
+    const XX = new Float64Array(MAXPT + 2);
+    const YY = new Float64Array(MAXPT + 2);
     let NPT = 0;
     let C = 0.0;
     let FT = 1.0;
     for (const p of taper) {
-      if (NPT >= NELX) break;
+      if (NPT >= MAXPT) break;
       const B = C;
       C = p.x;
       const D = p.d;
@@ -801,13 +810,14 @@ function setLoad(s: State, load: LoadCase): void {
   s.FNUY = s.NYTRIS * Math.sin(s.RISH);
 }
 
-/** Clamp the integer inputs exactly as STANG.F90 did after the data dialog. */
-export function clampDesign(d: DesignParams): DesignParams {
+/** Clamp the integer inputs as STANG.F90 did after the data dialog (element cap raised unless legacy). */
+export function clampDesign(d: DesignParams, legacy = false): DesignParams {
+  const maxElements = legacy ? NELX - 1 : MAX_ELEMENTS;
   return {
     ...d,
     sides: Math.max(3, Math.trunc(d.sides)),
     guideCount: Math.max(3, Math.trunc(d.guideCount)),
-    elementCount: Math.max(29, Math.min(NELX - 1, Math.trunc(d.elementCount))),
+    elementCount: Math.max(29, Math.min(maxElements, Math.trunc(d.elementCount))),
     spiralParameter: Math.min(89.0, d.spiralParameter),
   };
 }
@@ -818,7 +828,7 @@ export function clampDesign(d: DesignParams): DesignParams {
  * and optionally LASTDIALOG ("Ny last") -> CALCPLOT with another load.
  */
 export function runModel(input: ModelInput): ModelResult {
-  const d = clampDesign(input.design);
+  const d = clampDesign(input.design, input.legacy === true);
   const s = new State();
   s.legacy = input.legacy === true;
   s.NKANT = d.sides;

@@ -2,8 +2,9 @@
  * Form state: every input is kept as the text the user typed, so half-typed
  * numbers ("1,") don't get rewritten. Parsing accepts Danish decimal commas.
  */
+import { MAX_ELEMENTS, MAX_GUIDES } from './engine/model';
 import type { DesignParams, ModelInput, TaperPoint } from './engine/types';
-import { DESIGN_KEYS, type RodDocument } from './io/document';
+import { DESIGN_KEYS, FORMAT_ID, type RodDocument } from './io/document';
 import type { Strings } from './i18n/strings';
 
 export type FieldKey = keyof DesignParams | 'loadTension' | 'loadAngle';
@@ -73,8 +74,8 @@ function rules(t: Strings['validation']): Partial<Record<FieldKey, Rule[]>> {
   const nonNeg: Rule = (v) => (v >= 0 ? null : t.nonNegative);
   return {
     sides: [integer, min(3), max(24)],
-    guideCount: [integer, min(3), max(14)],
-    elementCount: [integer, min(29), max(119)],
+    guideCount: [integer, min(3), max(MAX_GUIDES)],
+    elementCount: [integer, min(29), max(MAX_ELEMENTS)],
     rodLength: [positive],
     handleLength: [positive, (v, a) => (v < a.rodLength ? null : t.lessThanLength)],
     firstGuideDistance: [positive, (v, a) => (a.handleLength + v < a.rodLength ? null : t.handlePlusGuide)],
@@ -140,7 +141,7 @@ export function validate(form: FormState, t: Strings): Validated {
   const load = { lineTension: values.loadTension, lineAngle: values.loadAngle };
   const input: ModelInput = { design, guidePositions, taper, load };
   const document: RodDocument = {
-    format: 'stangbygning',
+    format: FORMAT_ID,
     version: 1,
     name: form.name.trim() || 'stang',
     design,

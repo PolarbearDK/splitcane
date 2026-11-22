@@ -38,7 +38,15 @@ describe('JSON documents', () => {
   it('rejects other files', () => {
     expect(() => parseDocument('nope')).toThrow(DocumentError);
     expect(() => parseDocument('{"format":"other"}')).toThrow(DocumentError);
-    expect(() => parseDocument('{"format":"stangbygning","version":1,"design":{"sides":6}}')).toThrow(/missingField/);
+    expect(() => parseDocument('{"format":"splitcane","version":1,"design":{"sides":6}}')).toThrow(/missingField/);
+  });
+
+  it('saves as "splitcane" and still opens files saved as "stangbygning"', () => {
+    const doc = parseLegacyDat(fixture('STANG1.DAT.txt'), 'stang1');
+    expect(JSON.parse(serializeDocument(doc)).format).toBe('splitcane');
+    const old = serializeDocument(doc).replace('"splitcane"', '"stangbygning"');
+    expect(parseDocument(old)).toEqual(doc);
+    expect(JSON.parse(serializeDocument(parseDocument(old))).format).toBe('splitcane');
   });
 });
 

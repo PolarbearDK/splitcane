@@ -3,6 +3,7 @@ import { DEFAULT_DESIGN, newDocument, type RodDocument } from './io/document';
 /** Stangbygning1/STANG.DAT - the run in stang.OUT (16 Feb 2013). */
 export const EXAMPLE_SPIRAL: RodDocument = newDocument('stang', {
   ...DEFAULT_DESIGN,
+  elementCount: 30,
   topGuideHeight: 6,
   bottomGuideHeight: 12,
 });
