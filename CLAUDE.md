@@ -6,6 +6,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A legacy Windows desktop program (2000–2013, author Viggo Hoppe) that designs and analyses **split-cane fly rods** ("splicane fiskestænger"). Given rod dimensions, guide ("øje") positions and line tension, it computes the rod's taper and its large-deflection bending curve and plots the result. Comments, identifiers, dialogs and output text are all in **Danish**.
 
+The repo has two parts:
+
+- `Stangbygning1/` + `STANGBYGNING1.DSW`: the original Fortran program, kept for reference. Don't modify it.
+- `web/`: the TypeScript port, a static React SPA deployed to GitHub Pages by `.github/workflows/deploy.yml`. This is where development happens.
+
+## Web app (`web/`)
+
+- Commands (run in `web/`): `npm run dev`, `npm test` (vitest), `npx vitest run tests/reference.test.ts -t "circle"` for a single test, `npm run build` (tsc + vite), `npm run typecheck`. Versions are pinned to work on Node 16 (Vite 4, Vitest 0.34). Don't upgrade past that without checking the local Node version.
+- `src/engine/model.ts` is a **literal port** of STANG/STANGINIT/FORCES/BMOMENT/BEND/BEAM/CALCPLOT. It keeps the Fortran variable names, 1-based guide arrays, evaluation order, `f32()` for REAL(4) literals such as `STAL*0.05`, and the zero values of uninitialised Fortran locals. Intentional deviations are tagged `PORT NOTE`, and the remaining quirks are listed in `web/README.md`. Any change to the engine must keep `tests/reference.test.ts` passing. That test compares against `tests/fixtures/stang*.OUT.txt`, which are UTF-8 copies of the original program's output.
+- `src/form.ts` holds the inputs as text, accepts Danish decimal commas, and validates with the original dialog's limits. `src/io/document.ts` defines the JSON file format that replaces `.DAT`. `src/io/legacyDat.ts` imports old `.DAT` files.
+- UI text lives only in `src/i18n/strings.ts` (Danish + English). Add every new string in both languages.
+
 ## Toolchain / build
 
 - Language: Fortran 90, **Digital/Compaq Visual Fortran 5/6** (`df.exe`) using the DF extension libraries `DFLIB` (QuickWin graphics/menus) and `DFLOGM` (dialogs). It is a **QuickWin application** (`/libs:qwin`, entry `WinMainCRTStartup`). It will not build with gfortran/ifx without porting the QuickWin and dialog calls.
@@ -13,7 +25,7 @@ A legacy Windows desktop program (2000–2013, author Viggo Hoppe) that designs 
 - `STANGMOD.F90` must be compiled first (other files `USE STANGMOD`; the `.mod` goes in `Debug/`).
 - **`gridshape.obj` and `SCALIN.obj` in `Stangbygning1/Debug/` have no source in the repo.** They are linked straight into the executable (`GRIDSHAPE` is called from `CALCPLOT`). Don't delete or clean that `Debug/` folder.
 - `Stangbygning1/STANG.DSP`/`.DSW` and `Stangbygning1/Stang1/` are older or alternate project files. `STANG.DSP` is a console build that doesn't link `gridshape.obj`. The root `STANGBYGNING1.DSP` is the current project.
-- There are no tests or linting. To check a change, run the program on a `.DAT` file and compare the `.OUT` output.
+- The Fortran program has no tests. Its `stang.OUT`/`stang1.OUT` serve as the reference data for the web port.
 
 ## Source conventions (important when editing)
 

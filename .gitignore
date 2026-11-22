@@ -1,0 +1,9 @@
+# Web app
+web/node_modules/
+web/dist/
+
+# Visual Fortran build output / IDE state (the committed Stangbygning1/Debug/gridshape.obj and
+# SCALIN.obj have no source and are needed to link the Fortran program - do not ignore those)
+*.ncb
+*.pdb
+*.ilk

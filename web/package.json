@@ -1,0 +1,27 @@
+{
+  "name": "stangbygning",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Splitcane fly rod design and deflection calculator - TypeScript port of Viggo Hoppe's STANGBYGNING1 (Fortran, 2000-2013).",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "@vitejs/plugin-react": "4.2.1",
+    "typescript": "5.4.5",
+    "vite": "4.5.5",
+    "vitest": "0.34.6"
+  }
+}

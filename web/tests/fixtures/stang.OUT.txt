@@ -1,0 +1,223 @@
+   3 |stang.DAT                                                                       |
+   4 |stang.OUT                                                                       |
+           1
+  DATA EMOD:   25000.0000000000     
+ STANGENS DATA:
+ 6-KANTET STANG MED  8 ØJER,  SOM ER SAT I AFSTANDSFORHOLDET:   3.3000
+ CA. ANTAL ELEMENTER I STANGEN:    30
+ ELASTICITETSMODUL.   25000.0  MASSEFYLDE    1.1000
+ TRÆK I SNØREN     0.20 SOM DANNER VINKLEN  95.00 GRADER MED HÅNDTAGET.
+ STANGENS SPIDS DANNER VINKLEN   60.00 GRADER MED HÅNDTAGET VED FULDT TRÆK
+ FORMPARAMETER=                 70.00
+ HØJDE AF ØJE VED SPIDS          6.0
+ HØJDE AF ØJE VED HÅNDTAG       12.0
+ STANGLÆNGDE=                 2286.0
+ HÅNDTAGETS LÆNGDE             260.0
+ AFSTAND TIL NEDERSTE ØJE      400.0
+ DIAMETER VED SPIDS=             1.6
+ AFSTAND MELLEM STILLESKRUER   127.0
+ LÆNGDE AF FERULE=              80.0
+ MIN. AFSTAND ØJE-FERULE=       15.0
+ FOR YDERRADIUS = 1 ER KONSTANTER FOR:
+                       OMSKEVEN CIRKEL      AKTUELT TVÆRSNIT      INDSKREVEN CIRKEL
+    AREALER:           3.1415926535898       2.5980762113533       2.3561944901923
+ INERTIMOMENTER:       0.7853981633974       0.6224557589701       0.5890486225481
+
+ DIMENSIONER AF SPLITTEN FOR STØRSTE RADIUS RKANT = 1.0
+   HIGH= 0.86603  BRED= 1.00000  AREAL= 2.59808 INERTIMOMENT= 0.62246D+00
+
+ PLACERING AF HÅNDTAGET OG DE  8 ØJER,
+ FORHOLD MELLEM MINDSTE OG STØRSTE AFSTAND:  3.30000
+ -1        0.00           2286.00
+                  260.00
+  0      260.00           2026.00
+                  400.00
+  1      660.00           1626.00
+                  390.33
+  2     1050.33           1235.67
+                  319.90
+  3     1370.24            915.76
+                  262.18
+  4     1632.42            653.58
+                  214.87
+  5     1847.29            438.71
+                  176.10
+  6     2023.39            262.61
+                  144.33
+  7     2167.72            118.28
+                  118.28
+  8     2286.00              0.00
+  UDEN FERULE
+           1   86.6666666666667     
+           2   173.333333333333     
+           3   260.000000000000     
+  UDEN FERULE
+           4   340.000000000000     
+           5   420.000000000000     
+           6   500.000000000000     
+           7   580.000000000000     
+           8   660.000000000000     
+  UDEN FERULE
+           9   738.066999892072     
+          10   816.133999784145     
+          11   894.200999676217     
+          12   972.267999568289     
+          13   1050.33499946036     
+   MED FERULE
+          14   1103.00000000000     
+ FERULE PLACERET MELLEM   1103.00 ,   1183.00 ,  FRA HÅNDTAG
+ FERULE PLACERET MELLEM   1183.00 ,   1103.00 ,  FRA SPIDS
+          15   1183.00000000000     
+          16   1276.61907018435     
+          17   1370.23814036870     
+  UDEN FERULE
+          18   1457.63146465382     
+          19   1545.02478893895     
+          20   1632.41811322407     
+  UDEN FERULE
+          21   1704.04222833515     
+          22   1775.66634344623     
+          23   1847.29045855731     
+  UDEN FERULE
+          24   1905.99075297234     
+          25   1964.69104738737     
+          26   2023.39134180241     
+  UDEN FERULE
+          27   2071.49978347834     
+          28   2119.60822515426     
+          29   2167.71666683019     
+  UDEN FERULE
+          30   2207.14444455346     
+          31   2246.57222227673     
+          32   2286.00000000000     
+  ANTAL ELEMENTER:          32
+
+  SPIRAL: XCENTR,YCENTR=   2155.72249823277        689.986561785490     
+ EXTRAPOLATIONER I HÅNDTAGET
+ EXTRAPOLATIONER I HÅNDTAGET   0      0.0000      3.7183
+ EXTRAPOLATIONER I HÅNDTAGET   1     86.6667      3.6435
+ EXTRAPOLATIONER I HÅNDTAGET   2    173.3333      3.5687
+ UDGLATNING VED SPIDS
+ EXTRAPOLATIONER I     SPIDS  22   1775.6663      1.7745
+ EXTRAPOLATIONER I     SPIDS  23   1847.2905      1.6551
+ EXTRAPOLATIONER I     SPIDS  24   1905.9908      1.5572
+ EXTRAPOLATIONER I     SPIDS  25   1964.6910      1.4594
+ EXTRAPOLATIONER I     SPIDS  26   2023.3913      1.3615
+ EXTRAPOLATIONER I     SPIDS  27   2071.4998      1.2813
+ EXTRAPOLATIONER I     SPIDS  28   2119.6082      1.2011
+ EXTRAPOLATIONER I     SPIDS  29   2167.7167      1.1209
+ EXTRAPOLATIONER I     SPIDS  30   2207.1444      1.0552
+ EXTRAPOLATIONER I     SPIDS  31   2246.5722      0.9895
+ EXTRAPOLATIONER I     SPIDS  32   2286.0000      0.9238
+
+  TILSTRÆBT UDBØJNINGSKURVE OG STANGTYKKELSE
+  0 X=   0.0,2286.0 Ux=   0.0 Uy=   0.0 Vinkel=  0.000 Diameter= 6.44 Højde= 3.22 Radius= 3.72 Bredde= 3.72
+  1 X=  86.7,2199.3 Ux=  86.7 Uy=   0.0 Vinkel=  0.000 Diameter= 6.31 Højde= 3.16 Radius= 3.64 Bredde= 3.64
+  2 X= 173.3,2112.7 Ux= 173.3 Uy=   0.0 Vinkel=  0.000 Diameter= 6.18 Højde= 3.09 Radius= 3.57 Bredde= 3.57
+  3 X= 260.0,2026.0 Ux= 260.0 Uy=   0.0 Vinkel=  0.000 Diameter= 6.05 Højde= 3.03 Radius= 3.49 Bredde= 3.49
+  4 X= 340.0,1946.0 Ux= 340.0 Uy=   0.5 Vinkel=  0.792 Diameter= 5.93 Højde= 2.97 Radius= 3.42 Bredde= 3.42
+  5 X= 420.0,1866.0 Ux= 420.0 Uy=   2.2 Vinkel=  1.615 Diameter= 5.81 Højde= 2.90 Radius= 3.35 Bredde= 3.35
+  6 X= 500.0,1786.0 Ux= 499.9 Uy=   5.1 Vinkel=  2.472 Diameter= 5.68 Højde= 2.84 Radius= 3.28 Bredde= 3.28
+  7 X= 580.0,1706.0 Ux= 579.8 Uy=   9.1 Vinkel=  3.366 Diameter= 5.55 Højde= 2.78 Radius= 3.21 Bredde= 3.21
+  8 X= 660.0,1626.0 Ux= 659.6 Uy=  14.5 Vinkel=  4.300 Diameter= 5.42 Højde= 2.71 Radius= 3.13 Bredde= 3.13
+  9 X= 738.1,1547.9 Ux= 737.4 Uy=  21.0 Vinkel=  5.253 Diameter= 5.29 Højde= 2.64 Radius= 3.05 Bredde= 3.05
+ 10 X= 816.1,1469.9 Ux= 815.1 Uy=  28.8 Vinkel=  6.252 Diameter= 5.16 Højde= 2.58 Radius= 2.98 Bredde= 2.98
+ 11 X= 894.2,1391.8 Ux= 892.6 Uy=  38.0 Vinkel=  7.302 Diameter= 5.02 Højde= 2.51 Radius= 2.90 Bredde= 2.90
+ 12 X= 972.3,1313.7 Ux= 970.0 Uy=  48.7 Vinkel=  8.407 Diameter= 4.88 Højde= 2.44 Radius= 2.82 Bredde= 2.82
+ 13 X=1050.3,1235.7 Ux=1047.1 Uy=  60.9 Vinkel=  9.574 Diameter= 4.73 Højde= 2.36 Radius= 2.73 Bredde= 2.73
+ 14 X=1103.0,1183.0 Ux=1098.9 Uy=  70.0 Vinkel= 10.399 Diameter= 4.63 Højde= 2.31 Radius= 2.67 Bredde= 2.67
+ 15 X=1183.0,1103.0 Ux=1177.5 Uy=  85.3 Vinkel= 11.720 Diameter= 4.47 Højde= 2.24 Radius= 2.58 Bredde= 2.58
+ 16 X=1276.6,1009.4 Ux=1268.8 Uy= 105.7 Vinkel= 13.379 Diameter= 4.28 Højde= 2.14 Radius= 2.47 Bredde= 2.47
+ 17 X=1370.2, 915.8 Ux=1359.6 Uy= 128.7 Vinkel= 15.183 Diameter= 4.08 Højde= 2.04 Radius= 2.36 Bredde= 2.36
+ 18 X=1457.6, 828.4 Ux=1443.5 Uy= 152.9 Vinkel= 17.019 Diameter= 3.89 Højde= 1.94 Radius= 2.24 Bredde= 2.24
+ 19 X=1545.0, 741.0 Ux=1526.6 Uy= 180.0 Vinkel= 19.033 Diameter= 3.68 Højde= 1.84 Radius= 2.13 Bredde= 2.13
+ 20 X=1632.4, 653.6 Ux=1608.7 Uy= 210.0 Vinkel= 21.263 Diameter= 3.46 Højde= 1.73 Radius= 2.00 Bredde= 2.00
+ 21 X=1704.0, 582.0 Ux=1675.0 Uy= 237.2 Vinkel= 23.287 Diameter= 3.28 Højde= 1.64 Radius= 1.89 Bredde= 1.89
+ 22 X=1775.7, 510.3 Ux=1740.2 Uy= 266.7 Vinkel= 25.528 Diameter= 3.07 Højde= 1.54 Radius= 1.77 Bredde= 1.77
+ 23 X=1847.3, 438.7 Ux=1804.2 Uy= 299.0 Vinkel= 28.040 Diameter= 2.87 Højde= 1.43 Radius= 1.66 Bredde= 1.66
+ 24 X=1906.0, 380.0 Ux=1855.4 Uy= 327.6 Vinkel= 30.351 Diameter= 2.70 Højde= 1.35 Radius= 1.56 Bredde= 1.56
+ 25 X=1964.7, 321.3 Ux=1905.4 Uy= 358.4 Vinkel= 32.951 Diameter= 2.53 Højde= 1.26 Radius= 1.46 Bredde= 1.46
+ 26 X=2023.4, 262.6 Ux=1953.8 Uy= 391.5 Vinkel= 35.921 Diameter= 2.36 Højde= 1.18 Radius= 1.36 Bredde= 1.36
+ 27 X=2071.5, 214.5 Ux=1992.1 Uy= 420.7 Vinkel= 38.717 Diameter= 2.22 Højde= 1.11 Radius= 1.28 Bredde= 1.28
+ 28 X=2119.6, 166.4 Ux=2028.8 Uy= 451.8 Vinkel= 41.946 Diameter= 2.08 Højde= 1.04 Radius= 1.20 Bredde= 1.20
+ 29 X=2167.7, 118.3 Ux=2063.5 Uy= 485.1 Vinkel= 45.768 Diameter= 1.94 Højde= 0.97 Radius= 1.12 Bredde= 1.12
+ 30 X=2207.1,  78.9 Ux=2090.1 Uy= 514.2 Vinkel= 49.526 Diameter= 1.83 Højde= 0.91 Radius= 1.06 Bredde= 1.06
+ 31 X=2246.6,  39.4 Ux=2114.5 Uy= 545.1 Vinkel= 54.112 Diameter= 1.71 Højde= 0.86 Radius= 0.99 Bredde= 0.99
+ 32 X=2286.0,   0.0 Ux=2136.0 Uy= 578.1 Vinkel= 60.000 Diameter= 1.60 Højde= 0.80 Radius= 0.92 Bredde= 0.92
+
+ MASSE=   45.60G, TYNGDEPUNKT=  777.49 VOLUMEN=     41455.6
+ Fra håndtag 1964.7 SIGMAX=     28.7 fra spids  321.3
+
+  STILLESKRUE NR.0 VED STANGENS SPIDS. X,H,D I MM OG INCHES VED STILLESKRUER:
+  0       0.000,       0.800,       1.600,       0.000,       0.031,       0.063,
+  1     127.000,       0.983,       1.967,       5.000,       0.039,       0.077,
+  2     254.000,       1.167,       2.333,      10.000,       0.046,       0.092,
+  3     381.000,       1.350,       2.700,      15.000,       0.053,       0.106,
+  4     508.000,       1.533,       3.067,      20.000,       0.060,       0.121,
+  5     635.000,       1.708,       3.416,      25.000,       0.067,       0.134,
+  6     762.000,       1.866,       3.733,      30.000,       0.073,       0.147,
+  7     889.000,       2.010,       4.021,      35.000,       0.079,       0.158,
+  8    1016.000,       2.148,       4.296,      40.000,       0.085,       0.169,
+  9    1143.000,       2.276,       4.552,      45.000,       0.090,       0.179,
+ 10    1270.000,       2.397,       4.793,      50.000,       0.094,       0.189,
+ 11    1397.000,       2.514,       5.028,      55.000,       0.099,       0.198,
+ 12    1524.000,       2.624,       5.248,      60.000,       0.103,       0.207,
+ 13    1651.000,       2.729,       5.459,      65.000,       0.107,       0.215,
+ 14    1778.000,       2.835,       5.669,      70.000,       0.112,       0.223,
+ 15    1905.000,       2.934,       5.869,      75.000,       0.116,       0.231,
+ 16    2032.000,       3.030,       6.061,      80.000,       0.119,       0.239,
+ 17    2159.000,       3.125,       6.250,      85.000,       0.123,       0.246,
+ 18    2286.000,       3.220,       6.440,      90.000,       0.127,       0.254,
+  STANG:SETREF= T
+  STANG:DFY,RDEF,DYL=   2286.00000000000        114.300001703203     
+  2.286000000000000E-005
+  STANG:ITERA,D=           0  0.000000000000000E+000
+ stang:d,dy,dfy=  1  0.00000000000000D+00  0.38489694569256D+02  0.38489694569256D+02
+ stang:d,dy,dfy=  2  0.38489694569256D+02  0.10236944723594D+03  0.63879752666681D+02
+ stang:d,dy,dfy=  3  0.10236944723594D+03  0.11336523719919D+03  0.10995789963248D+02
+ stang:d,dy,dfy=  4  0.11336523719919D+03  0.11417715937906D+03  0.81192217987676D+00
+ stang:d,dy,dfy=  5  0.11417715937906D+03  0.11428750370803D+03  0.11034432896589D+00
+ stang:d,dy,dfy=  6  0.11428750370803D+03  0.11429853082287D+03  0.11027114841340D-01
+ stang:d,dy,dfy=  7  0.11429853082287D+03  0.11429984394096D+03  0.13131180904082D-02
+ stang:d,dy,dfy=  8  0.11429984394096D+03  0.11429998214102D+03  0.13820006289222D-03
+ stang:d,dy,dfy=  9  0.11429998214102D+03  0.11429999966359D+03  0.17522569621065D-04
+  stang:reff=  3.347069649351274E-002
+  IFASE2      2
+  IFASE5      2
+
+ VIRKELIG UDBØJNINGSKURVE FOR SNØREVINKEL= 95.00 GRADER
+ OG TRÆK I SNØREN=  0.2000
+  3 X= 260.0,2026.0 Ux= 260.0 Uy=   0.0 Vinkel=  0.00 Bøjmoment=   393.4 Spænding=   14.82 Diameter=  6.052
+  4 X= 340.0,1946.0 Ux= 340.0 Uy=   0.5 Vinkel=  0.79 Bøjmoment=   377.3 Spænding=   15.09 Diameter=  5.932
+  5 X= 420.0,1866.0 Ux= 420.0 Uy=   2.2 Vinkel=  1.62 Bøjmoment=   360.9 Spænding=   15.37 Diameter=  5.809
+  6 X= 500.0,1786.0 Ux= 499.9 Uy=   5.1 Vinkel=  2.47 Bøjmoment=   344.3 Spænding=   15.67 Diameter=  5.682
+  7 X= 580.0,1706.0 Ux= 579.8 Uy=   9.2 Vinkel=  3.37 Bøjmoment=   327.4 Spænding=   15.98 Diameter=  5.551
+  8 X= 660.0,1626.0 Ux= 659.7 Uy=  14.5 Vinkel=  4.30 Bøjmoment=   310.3 Spænding=   16.30 Diameter=  5.416
+  9 X= 738.1,1547.9 Ux= 737.5 Uy=  21.0 Vinkel=  5.26 Bøjmoment=   295.2 Spænding=   16.66 Diameter=  5.288
+ 10 X= 816.1,1469.9 Ux= 815.1 Uy=  28.8 Vinkel=  6.26 Bøjmoment=   279.8 Spænding=   17.04 Diameter=  5.156
+ 11 X= 894.2,1391.8 Ux= 892.7 Uy=  38.0 Vinkel=  7.31 Bøjmoment=   264.2 Spænding=   17.45 Diameter=  5.019
+ 12 X= 972.3,1313.7 Ux= 970.0 Uy=  48.7 Vinkel=  8.42 Bøjmoment=   248.3 Spænding=   17.87 Diameter=  4.876
+ 13 X=1050.3,1235.7 Ux=1047.1 Uy=  60.9 Vinkel=  9.59 Bøjmoment=   232.0 Spænding=   18.33 Diameter=  4.728
+ 14 X=1103.0,1183.0 Ux=1099.0 Uy=  70.1 Vinkel= 10.41 Bøjmoment=   221.9 Spænding=   18.67 Diameter=  4.629
+ 15 X=1183.0,1103.0 Ux=1177.5 Uy=  85.4 Vinkel= 11.73 Bøjmoment=   206.3 Spænding=   19.23 Diameter=  4.474
+ 16 X=1276.6,1009.4 Ux=1268.9 Uy= 105.8 Vinkel= 13.40 Bøjmoment=   187.6 Spænding=   19.93 Diameter=  4.283
+ 17 X=1370.2, 915.8 Ux=1359.6 Uy= 128.9 Vinkel= 15.21 Bøjmoment=   168.3 Spænding=   20.70 Diameter=  4.079
+ 18 X=1457.6, 828.4 Ux=1443.6 Uy= 153.1 Vinkel= 17.05 Bøjmoment=   151.7 Spænding=   21.55 Diameter=  3.888
+ 19 X=1545.0, 741.0 Ux=1526.7 Uy= 180.2 Vinkel= 19.07 Bøjmoment=   134.7 Spænding=   22.49 Diameter=  3.683
+ 20 X=1632.4, 653.6 Ux=1608.7 Uy= 210.4 Vinkel= 21.31 Bøjmoment=   117.1 Spænding=   23.54 Diameter=  3.463
+ 21 X=1704.0, 582.0 Ux=1675.0 Uy= 237.5 Vinkel= 23.34 Bøjmoment=   103.9 Spænding=   24.58 Diameter=  3.280
+ 22 X=1775.7, 510.3 Ux=1740.2 Uy= 267.2 Vinkel= 25.61 Bøjmoment=    90.4 Spænding=   25.99 Diameter=  3.074
+ 23 X=1847.3, 438.7 Ux=1804.1 Uy= 299.6 Vinkel= 28.15 Bøjmoment=    76.5 Spænding=   27.09 Diameter=  2.867
+ 24 X=1906.0, 380.0 Ux=1855.4 Uy= 328.3 Vinkel= 30.47 Bøjmoment=    66.2 Spænding=   28.17 Diameter=  2.697
+ 25 X=1964.7, 321.3 Ux=1905.3 Uy= 359.2 Vinkel= 33.01 Bøjmoment=    55.7 Spænding=   28.79 Diameter=  2.528
+ 26 X=2023.4, 262.6 Ux=1953.8 Uy= 392.3 Vinkel= 35.75 Bøjmoment=    44.9 Spænding=   28.58 Diameter=  2.358
+ 27 X=2071.5, 214.5 Ux=1992.2 Uy= 421.2 Vinkel= 38.13 Bøjmoment=    37.1 Spænding=   28.33 Diameter=  2.219
+ 28 X=2119.6, 166.4 Ux=2029.4 Uy= 451.7 Vinkel= 40.58 Bøjmoment=    29.1 Spænding=   27.00 Diameter=  2.080
+ 29 X=2167.7, 118.3 Ux=2065.3 Uy= 483.8 Vinkel= 43.00 Bøjmoment=    21.0 Spænding=   23.92 Diameter=  1.942
+ 30 X=2207.1,  78.9 Ux=2093.7 Uy= 511.1 Vinkel= 44.79 Bøjmoment=    14.2 Spænding=   19.39 Diameter=  1.828
+ 31 X=2246.6,  39.4 Ux=2121.3 Uy= 539.3 Vinkel= 46.18 Bøjmoment=     7.3 Spænding=   12.12 Diameter=  1.714
+ 32 X=2286.0,   0.0 Ux=2148.4 Uy= 567.9 Vinkel= 46.77 Bøjmoment=     0.4 Spænding=    0.79 Diameter=  1.600
+
+ Afstand fra håndtagsenden 1964.7 SIGMAX=     28.8 fra spidsenden  321.3
+
+  CALCPLOT:VISH=   95.0000000000000     
