@@ -89,13 +89,17 @@ describe('parabolic target curve', () => {
 });
 
 describe('parabola in files and the form', () => {
-  it('is saved as "curve": "parabola" and read back; spiral is the default and not written', () => {
+  it('is always saved as "curve" and read back; a file without it is a spiral', () => {
     const doc = { ...EXAMPLE_DEFAULT, curve: 'parabola' as const };
     const text = serializeDocument(doc);
     expect(JSON.parse(text).curve).toBe('parabola');
     expect(parseDocument(text).curve).toBe('parabola');
-    expect(JSON.parse(serializeDocument(EXAMPLE_DEFAULT)).curve).toBeUndefined();
-    expect(parseDocument(serializeDocument(EXAMPLE_DEFAULT)).curve).toBeUndefined();
+    const spiral = serializeDocument({ ...EXAMPLE_DEFAULT, curve: undefined });
+    expect(JSON.parse(spiral).curve).toBe('spiral');
+    expect(parseDocument(spiral).curve).toBe('spiral');
+    const old = JSON.parse(spiral);
+    delete old.curve;
+    expect(formFromDocument(parseDocument(JSON.stringify(old))).curve).toBe('spiral');
     expect(() => parseDocument(text.replace('"parabola"', '"hyperbola"'))).toThrow(/badValue/);
   });
 
@@ -107,6 +111,7 @@ describe('parabola in files and the form', () => {
     expect(ok.errors).toEqual({});
     expect(ok.input?.curve).toBe('parabola');
     expect(ok.document?.curve).toBe('parabola');
+    expect(validate({ ...form, curve: 'spiral', fields: { ...form.fields, spiralParameter: '70' } }, t).document?.curve).toBe('spiral');
 
     form.fields = { ...form.fields, tipAngle: '92', lineAngle: '120' };
     expect(validate(form, t).errors.tipAngle).toBe(t.validation.parabolaTipAngle);

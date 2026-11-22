@@ -5,7 +5,7 @@
  *   "format": "splitcane", "version": 1,
  *   "name": "...", "notes": "...",
  *   "design": { ...DesignParams },
- *   "curve": "parabola",               // optional target bend curve; default "spiral" (circle when spiralParameter = 0)
+ *   "curve": "spiral",                 // target bend curve: "spiral" (logarithmic; circle when spiralParameter = 0) or "parabola"; "spiral" if missing
  *   "guidePositions": [ ... ],        // only used when design.guideSpacingRatio = 0
  *   "taper": [ { "x": 0, "d": 6.4 } ], // only used when design.tipDiameter = 0
  *   "load": { "lineTension": 0.3, "lineAngle": 100 } // optional test load
@@ -124,7 +124,7 @@ export function parseDocument(text: string): RodDocument {
   }
   if (o.curve !== undefined) {
     if (o.curve !== 'spiral' && o.curve !== 'parabola') throw new DocumentError('badValue', 'curve');
-    if (o.curve === 'parabola') doc.curve = 'parabola';
+    doc.curve = o.curve;
   }
   if (o.load !== undefined) {
     const l = o.load as Record<string, unknown>;
@@ -144,7 +144,7 @@ export function serializeDocument(doc: RodDocument): string {
   const design: Record<string, number> = {};
   for (const k of DESIGN_KEYS) design[k] = doc.design[k];
   out.design = design;
-  if (doc.curve === 'parabola') out.curve = 'parabola';
+  out.curve = doc.curve ?? 'spiral';
   if (doc.guidePositions?.length) out.guidePositions = doc.guidePositions;
   if (doc.taper?.length) out.taper = doc.taper;
   if (doc.load) out.load = doc.load;

@@ -68,7 +68,7 @@ export function parseLegacyDat(text: string, name = 'stang'): RodDocument {
     tipAngle: visp,
     spiralParameter: alfa,
   };
-  const doc = newDocument(name, design);
+  const doc: RodDocument = { ...newDocument(name, design), curve: 'spiral' }; // the Fortran program only had the spiral
   if (reye < 0.01) {
     const pos: number[] = [];
     for (let i = 0; i < Math.trunc(neye); i++) pos.push(take(1)[0]);

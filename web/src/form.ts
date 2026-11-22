@@ -160,7 +160,7 @@ export function validate(form: FormState, t: Strings): Validated {
     design,
   };
   if (form.notes.trim()) document.notes = form.notes;
-  if (curve) document.curve = curve;
+  document.curve = form.curve;
   // Keep custom lists in the file even when they are not in use, so switching back is lossless.
   const g = parseGuideText(form.guideText);
   if (g?.length) document.guidePositions = g;
